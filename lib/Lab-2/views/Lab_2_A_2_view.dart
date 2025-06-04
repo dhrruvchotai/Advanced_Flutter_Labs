@@ -1,14 +1,14 @@
 import 'package:advance_flutter_lab/Lab-2/controllers/Lab_2_A_2_controller.dart';
 import 'package:flutter/material.dart';
 
-class UserSignUpModel extends StatefulWidget {
-  const UserSignUpModel({super.key});
+class UserSignUpView extends StatefulWidget {
+  const UserSignUpView({super.key});
 
   @override
-  State<UserSignUpModel> createState() => _UserSignUpModelState();
+  State<UserSignUpView> createState() => _UserSignUpViewState();
 }
 
-class _UserSignUpModelState extends State<UserSignUpModel> {
+class _UserSignUpViewState extends State<UserSignUpView> {
   UserSignUpController _userSignUpController = UserSignUpController();
   GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController _name = TextEditingController();
@@ -25,16 +25,20 @@ class _UserSignUpModelState extends State<UserSignUpModel> {
         key: _formKey,
         child: Column(
           children: [
-            TextFormField(
-              controller: _name,
-              decoration: InputDecoration(
-                label: Text("Name"),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _name,
+                decoration: InputDecoration(
+                  label: Text("Name"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
+                validator: (value) => _userSignUpController.validateName(_name.text),
               ),
-              validator: (value) => _userSignUpController.validateName(_name.text, "Please enter your name!"),
             ),
+            SizedBox(height: 10,),
             TextFormField(
               controller: _email,
               decoration: InputDecoration(
@@ -43,7 +47,9 @@ class _UserSignUpModelState extends State<UserSignUpModel> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              validator: (value) => _userSignUpController.validateEmail(_email.text),
             ),
+            SizedBox(height: 10,),
             TextFormField(
               controller: _phone,
               decoration: InputDecoration(
@@ -53,6 +59,7 @@ class _UserSignUpModelState extends State<UserSignUpModel> {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
             TextFormField(
               controller: _password,
               decoration: InputDecoration(
@@ -62,6 +69,7 @@ class _UserSignUpModelState extends State<UserSignUpModel> {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
             TextFormField(
               controller: _confirm_password,
               decoration: InputDecoration(
@@ -73,7 +81,8 @@ class _UserSignUpModelState extends State<UserSignUpModel> {
             ),
             ElevatedButton(
               onPressed: (){
-                if(_formKey.currentState.){
+                if(_formKey.currentState!.validate()){
+                  print("All details are valid!");
                 }
               },
               child: Text("Sign Up")),
