@@ -21,5 +21,13 @@ class UserSignUpController{
     }
     return null;
   }
-
+  String? validatePhoneNumber(String? phoneNumValue){
+    if(phoneNumValue == null || phoneNumValue.isEmpty){
+      return 'Please enter phone number!';
+    }
+    if(_userSignUpModel.validatePhoneNumberFromat(phoneNumValue)){
+      return "Please enter valid phone number!";
+    }
+    return null;
+  }
 }

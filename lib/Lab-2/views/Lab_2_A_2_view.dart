@@ -39,24 +39,31 @@ class _UserSignUpViewState extends State<UserSignUpView> {
               ),
             ),
             SizedBox(height: 10,),
-            TextFormField(
-              controller: _email,
-              decoration: InputDecoration(
-                label: Text("Email"),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _email,
+                decoration: InputDecoration(
+                  label: Text("Email"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
+                validator: (value) => _userSignUpController.validateEmail(_email.text),
               ),
-              validator: (value) => _userSignUpController.validateEmail(_email.text),
             ),
             SizedBox(height: 10,),
-            TextFormField(
-              controller: _phone,
-              decoration: InputDecoration(
-                label: Text("Phone"),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _phone,
+                decoration: InputDecoration(
+                  label: Text("Phone"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
+                validator: (value) => _userSignUpController.validatePhoneNumber(_phone.text),
               ),
             ),
             SizedBox(height: 10,),
