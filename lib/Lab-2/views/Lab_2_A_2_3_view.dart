@@ -1,4 +1,4 @@
-import 'package:advance_flutter_lab/Lab-2/controllers/Lab_2_A_2_controller.dart';
+import 'package:advance_flutter_lab/Lab-2/controllers/Lab_2_A_2_3_controller.dart';
 import 'package:flutter/material.dart';
 
 class UserSignUpView extends StatefulWidget {
@@ -35,10 +35,11 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                validator: (value) => _userSignUpController.validateName(_name.text),
+                validator:
+                    (value) => _userSignUpController.validateName(_name.text),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -49,10 +50,11 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                validator: (value) => _userSignUpController.validateEmail(_email.text),
+                validator:
+                    (value) => _userSignUpController.validateEmail(_email.text),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -63,12 +65,17 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                validator: (value) => _userSignUpController.validatePhoneNumber(_phone.text),
+                validator:
+                    (value) =>
+                        _userSignUpController.validatePhoneNumber(_phone.text),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             TextFormField(
               controller: _password,
+              validator:
+                  (value) =>
+                      _userSignUpController.validatePassword(_password.text),
               decoration: InputDecoration(
                 label: Text("Password"),
                 border: OutlineInputBorder(
@@ -76,7 +83,7 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             TextFormField(
               controller: _confirm_password,
               decoration: InputDecoration(
@@ -87,12 +94,13 @@ class _UserSignUpViewState extends State<UserSignUpView> {
               ),
             ),
             ElevatedButton(
-              onPressed: (){
-                if(_formKey.currentState!.validate()){
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
                   print("All details are valid!");
                 }
               },
-              child: Text("Sign Up")),
+              child: Text("Sign Up"),
+            ),
           ],
         ),
       ),
