@@ -75,9 +75,9 @@ class _ProductsPageViewState extends State<ProductsPageView>
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
                         ),
-                      ),
-                      key: ValueKey(
-                        ECommerceProductController.cartItems.length,
+                        key: ValueKey(
+                          ECommerceProductController.cartItems.length,
+                        ),
                       ),
                       transitionBuilder: (child, animation) {
                         return ScaleTransition(scale: animation, child: child);
@@ -106,7 +106,7 @@ class _ProductsPageViewState extends State<ProductsPageView>
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
-                          shadowColor: Colors.pinkAccent.withOpacity(0.3),
+                          shadowColor: Colors.green.withOpacity(0.5),
                           elevation: 5,
                           color: Colors.white,
                           child: Row(
@@ -236,7 +236,7 @@ class _ProductsPageViewState extends State<ProductsPageView>
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
-                              shadowColor: Colors.pinkAccent.withOpacity(0.3),
+                              shadowColor: Colors.green.withOpacity(0.5),
                               elevation: 5,
                               color: Colors.white,
                               child: Row(

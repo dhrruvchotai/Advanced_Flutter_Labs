@@ -1,8 +1,8 @@
-import 'package:advance_flutter_lab/Lab-3/views/Lab_3_A_1_view.dart';
+import 'package:advance_flutter_lab/Lab-2/views/Lab_2_A_5_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: StudentCRUDView()),
+    MaterialApp(debugShowCheckedModeBanner: false, home: ProductsPageView()),
   );
 }
