@@ -1,14 +1,13 @@
-import 'package:advance_flutter_lab/Lab-2/models/Lab_2_A_2_3_model.dart';
 import 'package:advance_flutter_lab/Lab-2/models/Lab_2_A_4_model.dart';
 
 class ProfileCardController {
-  UserSignUpModel _userSignUpModel = UserSignUpModel();
+  ProfileCardModel _profileCardModel = ProfileCardModel();
 
   String? validateName(String? nameValue) {
     if (nameValue == null || nameValue.isEmpty) {
       return "Please enter name!";
     }
-    if (!_userSignUpModel.validateNameFormat(nameValue)) {
+    if (!_profileCardModel.validateNameFormat(nameValue)) {
       return "Please enter valid name - only characters are allowed!";
     }
     return null;
@@ -17,7 +16,7 @@ class ProfileCardController {
   String? validateEmail(String? emailValue) {
     if (emailValue == null || emailValue.isEmpty) {
       return 'Please enter email!';
-    } else if (!_userSignUpModel.validateEmailFormat(emailValue)) {
+    } else if (!_profileCardModel.validateEmailFormat(emailValue)) {
       return 'Please enter valid email!';
     }
     return null;
@@ -27,8 +26,15 @@ class ProfileCardController {
     if (phoneNumValue == null || phoneNumValue.isEmpty) {
       return 'Please enter phone number!';
     }
-    if (_userSignUpModel.validatePhoneNumberFromat(phoneNumValue)) {
+    if (_profileCardModel.validatePhoneNumberFromat(phoneNumValue)) {
       return "Please enter valid phone number!";
+    }
+    return null;
+  }
+
+  String? validateLocation(String? locationValue) {
+    if (locationValue == null || locationValue.isEmpty) {
+      return 'Please enter location!';
     }
     return null;
   }
@@ -39,9 +45,15 @@ class UserController {
 
   static User get user => _user;
 
-  void setUserDetails({String? name, String? email, String? phone}) {
+  void setUserDetails({
+    String? name,
+    String? email,
+    String? phone,
+    String? location,
+  }) {
     user.name = name;
     user.email = email;
     user.phone = phone;
+    user.location = location;
   }
 }

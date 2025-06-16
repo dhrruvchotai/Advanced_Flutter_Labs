@@ -1,4 +1,3 @@
-import 'package:advance_flutter_lab/Lab-2/controllers/Lab_2_A_2_3_controller.dart';
 import 'package:advance_flutter_lab/Lab-2/controllers/Lab_2_A_4_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -10,20 +9,24 @@ class ProfileCardView extends StatefulWidget {
 }
 
 class _ProfileCardViewState extends State<ProfileCardView> {
-  UserSignUpController _userSignUpController = UserSignUpController();
+  ProfileCardController _profileCardController = ProfileCardController();
   UserController _userController = UserController();
   GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController _name = TextEditingController();
   TextEditingController _phone = TextEditingController();
   TextEditingController _email = TextEditingController();
+  TextEditingController _location = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Card Generator"),
+        title: Text(
+          "Profile Card Generator",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.indigo,
       ),
       body: Form(
         key: _formKey,
@@ -40,7 +43,7 @@ class _ProfileCardViewState extends State<ProfileCardView> {
                   ),
                 ),
                 validator:
-                    (value) => _userSignUpController.validateName(_name.text),
+                    (value) => _profileCardController.validateName(_name.text),
               ),
             ),
             SizedBox(height: 10),
@@ -55,7 +58,8 @@ class _ProfileCardViewState extends State<ProfileCardView> {
                   ),
                 ),
                 validator:
-                    (value) => _userSignUpController.validateEmail(_email.text),
+                    (value) =>
+                        _profileCardController.validateEmail(_email.text),
               ),
             ),
             SizedBox(height: 10),
@@ -71,29 +75,54 @@ class _ProfileCardViewState extends State<ProfileCardView> {
                 ),
                 validator:
                     (value) =>
-                        _userSignUpController.validatePhoneNumber(_phone.text),
+                        _profileCardController.validatePhoneNumber(_phone.text),
               ),
             ),
             SizedBox(height: 10),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  print("All details are valid!");
-                  _userController.setUserDetails(
-                    name: _name.text,
-                    email: _email.text,
-                    phone: _phone.text,
-                  );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfileCard()),
-                  );
-                }
-              },
-              child: Text(
-                "Generate Card",
-                style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _location,
+                decoration: InputDecoration(
+                  label: Text("Location"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                validator:
+                    (value) =>
+                        _profileCardController.validateLocation(_location.text),
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(color: Colors.black, offset: Offset(2, 2)),
+                ],
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    print("All details are valid!");
+                    _userController.setUserDetails(
+                      name: _name.text,
+                      email: _email.text,
+                      phone: _phone.text,
+                      location: _location.text,
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfileCard()),
+                    );
+                  }
+                },
+                child: Text(
+                  "Generate Card",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ],
@@ -109,60 +138,228 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Text("Profile Card Generator"),
+        title: Text(
+          "Profile Card Generator",
+          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+        ),
+        leading: Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+            ),
+          ],
+        ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.indigo[600],
+        elevation: 0,
       ),
       body: Center(
-        child: Card(
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Colors.black45,
-                  offset: Offset(8.0, 8.0),
-                  blurRadius: 3.0,
-                ),
-              ],
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue,
+        child: Container(
+          margin: EdgeInsets.all(16),
+          constraints: BoxConstraints(maxWidth: 600, maxHeight: 220),
+          child: Card(
+            elevation: 8,
+            shadowColor: Colors.black87,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
-            height: MediaQuery.of(context).size.height / 2,
-            width: MediaQuery.of(context).size.width / 5,
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                CircleAvatar(
-                  radius: 25,
-                  child: Icon(Icons.person, color: Colors.white),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.indigo[400]!, Colors.indigo[600]!],
                 ),
-                Divider(color: Colors.black),
-                SizedBox(height: 10),
-                ListTile(
-                  leading: Icon(Icons.person_2_outlined),
-                  title: Text("Name"),
-                  subtitle: Text("Dhruv"),
-                ),
-                SizedBox(height: 20),
-                ListTile(
-                  leading: Icon(Icons.email_outlined),
-                  title: Text("Email"),
-                  subtitle: Text("dhruv@gmail.com"),
-                ),
-                SizedBox(height: 20),
-                ListTile(
-                  leading: Icon(Icons.phone_outlined),
-                  title: Text("Phone"),
-                  subtitle: Text("8320663837"),
-                ),
-                SizedBox(height: 20),
-              ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.3),
+                                width: 3,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 45,
+                              backgroundColor: Colors.white.withOpacity(0.2),
+                              child: Icon(
+                                Icons.person,
+                                size: 50,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            UserController.user.name!,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Container(
+                            width: 150,
+                            height: 23,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.3),
+                                width: 3,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "CEO - ChatGPT",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(2, 0.5),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildInfoRow(
+                            Icons.email_outlined,
+                            "Email",
+                            UserController.user.email!,
+                            Colors.indigo[600]!,
+                          ),
+                          Container(
+                            height: 1,
+                            color: Colors.grey[200],
+                            margin: EdgeInsets.symmetric(vertical: 8),
+                          ),
+                          _buildInfoRow(
+                            Icons.phone_outlined,
+                            "Phone",
+                            UserController.user.phone!,
+                            Colors.indigo[600]!,
+                          ),
+                          Container(
+                            height: 1,
+                            color: Colors.grey[200],
+                            margin: EdgeInsets.symmetric(vertical: 8),
+                          ),
+                          _buildInfoRow(
+                            Icons.location_on_outlined,
+                            "Location",
+                            UserController
+                                .user
+                                .location!, // You can replace this with actual location data
+                            Colors.indigo[600]!,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String label, String value, Color color) {
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(icon, color: color, size: 20),
+        ),
+        SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(height: 2),
+              Text(
+                value,
+                style: TextStyle(
+                  color: Colors.grey[800],
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

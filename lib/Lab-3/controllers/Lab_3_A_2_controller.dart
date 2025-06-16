@@ -11,4 +11,15 @@ class PersonDBController {
   Future<void> fetchPersons() async {
     persons = await _dbService.fetchPersons();
   }
+
+  Future<void> deletePersons({required int id}) async {
+    await _dbService.deletePerson(id: id);
+  }
+
+  Future<void> editPerson({
+    required int id,
+    required Map<String, dynamic> newUser,
+  }) async {
+    await _dbService.updatePerson(id: id, newUser: newUser);
+  }
 }

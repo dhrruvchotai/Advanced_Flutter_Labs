@@ -45,7 +45,26 @@ class _PersonsCRUDViewState extends State<PersonsCRUDView> {
                       itemBuilder: (context, index) {
                         Map<String, dynamic> person =
                             _personDBController.persons[index];
-                        return ListTile(title: Text(person['name']));
+                        return ListTile(
+                          tileColor: Colors.grey,
+                          title: Text(person['name']),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  _personDBController.deletePersons(
+                                    id: person['id'],
+                                  );
+                                },
+                                icon: Icon(Icons.delete),
+                              ),
+                            ],
+                          ),
+                          shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        );
                       },
                     )
                     : Column(

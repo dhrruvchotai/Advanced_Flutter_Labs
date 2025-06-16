@@ -56,4 +56,26 @@ class DatabaseService {
       print("Error adding person in the table : $e");
     }
   }
+
+  Future<void> deletePerson({required int id}) async {
+    if (_personsDB == null) {
+      await initDatabase();
+    }
+    await _personsDB!.delete('persons', where: "id = ?", whereArgs: [id]);
+  }
+
+  Future<void> updatePerson({
+    required int id,
+    required Map<String, dynamic> newUser,
+  }) async {
+    if (_personsDB == null) {
+      await initDatabase();
+    }
+    await _personsDB!.update(
+      "persons",
+      newUser,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+  }
 }
