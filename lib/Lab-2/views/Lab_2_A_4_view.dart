@@ -96,10 +96,12 @@ class _ProfileCardViewState extends State<ProfileCardView> {
             ),
             SizedBox(height: 10),
             Container(
+              width: 150,
+              height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
-                  BoxShadow(color: Colors.black, offset: Offset(2, 2)),
+                  BoxShadow(color: Colors.black, offset: Offset(2, 3)),
                 ],
               ),
               child: ElevatedButton(
@@ -222,32 +224,6 @@ class ProfileCard extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                          ),
-                          Container(
-                            width: 150,
-                            height: 23,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: Colors.white.withOpacity(0.3),
-                                width: 3,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                "CEO - ChatGPT",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
                           ),
                         ],
                       ),

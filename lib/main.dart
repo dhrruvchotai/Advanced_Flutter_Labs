@@ -1,8 +1,13 @@
-import 'package:advance_flutter_lab/Lab-2/views/Lab_2_A_4_view.dart';
+import 'package:advance_flutter_lab/Lab-4/getx_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: ProfileCardView()),
+    GetMaterialApp(
+      darkTheme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      home: GetxWidgets(),
+    ),
   );
 }
