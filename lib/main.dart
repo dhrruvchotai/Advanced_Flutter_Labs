@@ -1,4 +1,4 @@
-import 'package:advance_flutter_lab/Lab-7/views/reactive_list_example_view.dart';
+import 'package:advance_flutter_lab/Lab-10/user_Crud_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ void main() {
       //   ),
       //   GetPage(name: "/login_screen", page: () => LoginScreen()),
       // ],
-      home: ReactiveListExampleView(),
+      home: UserCrudView(),
     ),
   );
 }
