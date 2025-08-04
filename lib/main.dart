@@ -1,4 +1,4 @@
-import 'package:advance_flutter_lab/Lab-12/get_connect_example_show_data.dart';
+import 'package:advance_flutter_lab/Lab-15/camera_permenent_denied.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ void main() {
       //   ),
       //   GetPage(name: "/login_screen", page: () => LoginScreen()),
       // ],
-      home: GetConnectExampleShowData(),
+      home: CameraPermenentDenied(),
     ),
   );
 }
