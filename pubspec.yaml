@@ -37,6 +37,9 @@ dependencies:
   google_fonts:
   sqflite:
   get:
+  permission_handler:
+  location:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
