@@ -40,6 +40,10 @@ dependencies:
   permission_handler:
   location:
   path_provider:
+  firebase_core:
+  google_sign_in:
+  firebase_auth:
+  cloud_firestore: ^6.0.1
 
 dev_dependencies:
   flutter_test:

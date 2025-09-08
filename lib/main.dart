@@ -1,8 +1,13 @@
-import 'package:advance_flutter_lab/Lab-16/file_io_try.dart';
+import 'package:advance_flutter_lab/Lab-19/firebase_google_sign_in_demo.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -17,7 +22,7 @@ void main() {
       //   ),
       //   GetPage(name: "/login_screen", page: () => LoginScreen()),
       // ],
-      home: FileIoTry(),
+      home: FirebaseGoogleSignInDemo(),
     ),
   );
 }
